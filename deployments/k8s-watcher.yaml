@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-watcher
+  labels:
+    app: k8s-watcher
+spec:
+  template:
+    metadata:
+      name: k8s-watcher
+      labels:
+        app: k8s-watcher
+    spec:
+      containers:
+      - name: k8s-watcher
+        image: meplato/k8s-watcher:0.1.0
+        imagePullPolicy: Always
+        command:
+          - /k8s-watcher
+          - --namespace=default
+          - --service=greeter-server
